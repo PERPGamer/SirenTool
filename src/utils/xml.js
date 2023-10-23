@@ -77,7 +77,9 @@ function getCarcolsFromLights(lights, bpm, documentItem) {
 	for (const key in binary) {
 		documentItem.sirens.Item[key].color["_attributes"].value = `0xFF${colors[key] || "FF0000"}`;
 		documentItem.sirens.Item[key].flashiness.sequencer["_attributes"].value = binaryToDecimal(binary[key]);
-		documentItem.sirens.Item[key].rotation.sequencer["_attributes"].value = binaryToDecimal(binary[key]);
+		if (documentItem.sirens.Item[key].rotation) {
+			documentItem.sirens.Item[key].rotation.sequencer["_attributes"].value = binaryToDecimal(binary[key]);
+		}
 	}
 
 	documentItem.sequencerBpm["_attributes"].value = bpm;
